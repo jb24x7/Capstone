@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function Survey(props) {
+function Product(props) {
   return (
     <React.Fragment>
-      <div onClick={() => props.whenSurveyClicked(props.id)}>
+      <div onClick={() => props.whenProductClicked(props.id)}>
         <h3>{props.name}</h3>
         <hr />
       </div>
@@ -12,9 +12,9 @@ function Survey(props) {
   );
 }
 
-Survey.propTypes = {
+Product.propTypes = {
   name: PropTypes.string,
   question: PropTypes.object
 };
 
-export default Survey;
+export default Product;

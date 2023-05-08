@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SurveyForm from "./ProductForm";
+import ProductForm from "./ProductForm";
 
-function NewSurvey(props) {
+function NewProduct(props) {
 
 
-  function handleNewSurveyFormSubmission(event) {
+  function handleNewProductFormSubmission(event) {
     event.preventDefault();
-    props.onNewSurveyCreation({
+    props.onNewProductCreation({
       creatorEmail: props.currentUserEmail,
       name: event.target.name.value,
     });
@@ -15,16 +15,16 @@ function NewSurvey(props) {
 
   return (
     < React.Fragment >
-      <SurveyForm
-        formSubmissionHandler={handleNewSurveyFormSubmission}
+      <ProductForm
+        formSubmissionHandler={handleNewProductFormSubmission}
         buttonText="Submit"
       />
     </React.Fragment >
   );
 }
 
-NewSurvey.propTypes = {
-  onNewSurveyCreation: PropTypes.func
+NewProduct.propTypes = {
+  onNewProductCreation: PropTypes.func
 };
 
-export default NewSurvey;
+export default NewProduct;

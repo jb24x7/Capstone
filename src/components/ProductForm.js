@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function SurveyForm(props) {
+function ProductForm(props) {
   return (
     < React.Fragment >
       <form onSubmit={props.formSubmissionHandler}>
-        Survey name: <input
+        Product name: <input
           type='text'
           name="name"
-          placeholder="name of Survey" /> <br />
+          placeholder="name of Product" /> <br />
         Question1: <input type='text'
           name="question1"
           placeholder="Type your question here" /> <br />
@@ -42,9 +42,9 @@ function SurveyForm(props) {
   );
 }
 
-SurveyForm.propTypes = {
+ProductForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
   buttonText: PropTypes.string
 };
 
-export default SurveyForm;
+export default ProductForm;

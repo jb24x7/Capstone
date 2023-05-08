@@ -1,20 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
 import { db, auth } from "../firebase";
-import SurveyList from "./SurveyList";
-import NewVariableSurvey from "./NewVariableSurvey";
+import ProductList from "./ProductList";
+import NewVariableProduct from "./NewVariableProduct";
 import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc, query, where, getDocs, getDoc, getFirestore } from "firebase/firestore";
-import NewSurvey from "./NewSurvey";
-import EditSurveyForm from "./EditSurvey";
-import SurveyDetail from "./SurveyDetail";
+import NewProduct from "./Newproduct";
+import EditProductForm from "./EditProduct";
+import ProductDetail from "./ProductDetail";
 import DashBoard from "./Dashboard";
 import VariableDetail from "./VariableDetail";
 
-function SurveyControl(props) {
+function ProductControl(props) {
 
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
-  const [mainSurveyList, setMainSurveyList] = useState([]);
+  const [mainProductList, setMainProductList] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedSurvey, setSelectedSurvey] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [editing, setEditing] = useState(false);
   const [dashboardDisplay, setDashboardDisplay] = useState(false);
   const [answersList, setAnswersList] = useState([]);
@@ -23,18 +23,18 @@ function SurveyControl(props) {
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
-      collection(db, "surveys"),
+      collection(db, "products"),
       (collectionSnapshot) => {
-        const surveys = [];
+        const products = [];
         collectionSnapshot.forEach((doc) => {
-          surveys.push({
+          products.push({
             creatorEmail: doc.data().creatorEmail,
             name: doc.data().name,
             questions: doc.data().questions,
             id: doc.id
           });
         });
-        setMainSurveyList(surveys);
+        setMainProductList(products);
       },
       (error) => {
         setError(error.message);
@@ -44,10 +44,10 @@ function SurveyControl(props) {
   }, []);
 
   useEffect(() => {
-    if (!selectedSurvey) return;
+    if (!selectedProduct) return;
 
-    const selectedId = selectedSurvey.id;
-    const q = query(collection(db, "answers"), where("surveyId", "==", selectedId));
+    const selectedId = selectedProduct.id;
+    const q = query(collection(db, "answers"), where("productId", "==", selectedId));
 
     const unSubscribe = onSnapshot(q, (querySnapshot) => {
       const answers = [];
@@ -60,36 +60,14 @@ function SurveyControl(props) {
     return () => {
       if (unSubscribe) unSubscribe();
     };
-  }, [selectedSurvey]);
-  // -------------------------------------------------------------------------------------------------------
-  // useEffect(() => {
-  //   if (!selectedSurvey) return;
-  //   let unSubscribe;
+  }, [selectedProduct]);
 
-  //   (async () => {
-  //     const selectedId = selectedSurvey.id;
-  //     const db = getFirestore();
-  //     const docRef = doc(db, "surveys", selectedId);
-
-  //     try {
-  //       const docSnap = await getDoc(docRef);
-  //       console.log(docSnap.data().questions);
-  //       setQuestionsList(docSnap.data().questions)
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-
-  //   return () => {
-  //     if (unSubscribe) unSubscribe();
-  //   };
-  // }, [selectedSurvey]);
 
   const updateQuestionList = (id) => {
     
       (async () => {
         const db = getFirestore();
-        const docRef = doc(db, "surveys", id);
+        const docRef = doc(db, "products", id);
 
         try {
           const docSnap = await getDoc(docRef);
@@ -98,14 +76,13 @@ function SurveyControl(props) {
         } catch (error) {
           console.log(error);
         }
-        console.log("Reached updated questionList")
       })();
   };
 
 
   const handleClick = () => {
-    if (selectedSurvey != null) {
-      setSelectedSurvey(null);
+    if (selectedProduct != null) {
+      setSelectedProduct(null);
       setFormVisibleOnPage(false);
       setEditing(false);
     } else {
@@ -122,32 +99,32 @@ function SurveyControl(props) {
     setDashboardDisplay(true);
   };
 
-  const handleEditingSurveyInList = async (surveyToEdit) => {
-    const surveyRef = doc(db, "surveys", surveyToEdit.id);
-    await updateDoc(surveyRef, surveyToEdit);
+  const handleEditingProductInList = async (productToEdit) => {
+    const productRef = doc(db, "products", productToEdit.id);
+    await updateDoc(productRef, productToEdit);
     setEditing(false);
-    setSelectedSurvey(null);
+    setSelectedProduct(null);
   };
 
-  const handleDeleteSurvey = async (id) => {
-    await deleteDoc(doc(db, "surveys", id));
-    setSelectedSurvey(null);
+  const handleDeleteProduct = async (id) => {
+    await deleteDoc(doc(db, "products", id));
+    setSelectedProduct(null);
   };
 
-  const handleAddingNewSurveyToList = async (newSurveyData) => {
-    const result = await addDoc(collection(db, "surveys"), newSurveyData);
+  const handleAddingNewProductToList = async (newProductData) => {
+    const result = await addDoc(collection(db, "products"), newProductData);
     setFormVisibleOnPage(false);
   };
 
-  const handleChangingSelectedSurvey = (id) => {
-    const selection = mainSurveyList.filter(survey => survey.id === id)[0];
-    setSelectedSurvey(selection);
+  const handleChangingSelectedProduct = (id) => {
+    const selection = mainProductList.filter(product => product.id === id)[0];
+    setSelectedProduct(selection);
     updateQuestionList(id);
   };
 
-  const handleSendingSurvey = async (surveyAnswers) => {
-    const result = await addDoc(collection(db, "answers"), surveyAnswers);
-    setSelectedSurvey(null);
+  const handleSendingProduct = async (productAnswers) => {
+    const result = await addDoc(collection(db, "answers"), productAnswers);
+    setSelectedProduct(null);
   };
 
   let currentlyVisibleState = null;
@@ -157,51 +134,24 @@ function SurveyControl(props) {
     currentlyVisibleState = <p>There was an error: {error}</p>;
   } else if (editing) {
     currentlyVisibleState =
-      <EditSurveyForm
-        survey={selectedSurvey}
-        onEditSurvey={handleEditingSurveyInList}
+      <EditProductForm
+        product={selectedProduct}
+        onEditProduct={handleEditingProductInList}
       />;
-    buttonText = "Return to list";
-  } else if (selectedSurvey != null && questionsList) {
-    console.log(questionsList);
-    currentlyVisibleState =
-      <VariableDetail
-        survey={selectedSurvey}
-        surveyAnswers={answersList}
-        currentQuestions={questionsList}
-        currentUserEmail={props.userEmail}
-        onClickingSend={handleSendingSurvey}
-        onClickingEdit={handleEditClick}
-        onClickingDelete={handleDeleteSurvey} />;
     buttonText = "Return to list";
   } else if (formVisibleOnPage) {
     currentlyVisibleState =
-      <NewSurvey
-        onNewSurveyCreation={handleAddingNewSurveyToList}
+      <NewProduct
+        onNewProductCreation={handleAddingNewProductToList}
         currentUserEmail={props.userEmail} />;
     buttonText = "Return to list";
-  } else if (variableForm) {
-    currentlyVisibleState =
-      <NewVariableSurvey
-        onNewSurveyCreation={handleAddingNewSurveyToList}
-        currentUserEmail={props.userEmail}
-      />;
-  } else if (dashboardDisplay) {
-    currentlyVisibleState =
-      <DashBoard
-        currentUserEmail={props.userEmail}
-        mainList={mainSurveyList}
-        onSurveySelection={handleChangingSelectedSurvey}
-      />;
-    buttonText = "Return to list";
-  } else {
-    currentlyVisibleState = <SurveyList
-      onSurveySelection={handleChangingSelectedSurvey}
-      surveyList={mainSurveyList}
+    } else {
+    currentlyVisibleState = <ProductList
+      onProductSelection={handleChangingSelectedProduct}
+      productList={mainProductList}
       onDashboardClick={handleDashboardClick}
-    // addQuestion={addQuestionToSurvey}
     />;
-    buttonText = "New Survey";
+    buttonText = "New Product";
   }
   return (
     <React.Fragment>
@@ -211,4 +161,4 @@ function SurveyControl(props) {
   );
 }
 
-export default SurveyControl;
+export default ProductControl;

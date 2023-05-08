@@ -1,27 +1,27 @@
 import React from "react";
-import Survey from "./Survey";
+import Product from "./Product";
 import PropTypes from "prop-types";
 
-function SurveyList(props) {
+function ProductList(props) {
   return (
     <React.Fragment>
       <button onClick={props.onDashboardClick}>Dashboard</button>
-      {props.surveyList.map((survey) =>
-        <Survey
-          whenSurveyClicked={props.onSurveySelection}
-          name={survey.name}
-          id={survey.id}
-          key={survey.id}
+      {props.productList.map((product) =>
+        <Product
+          whenProductClicked={props.onProductSelection}
+          name={product.name}
+          id={product.id}
+          key={product.id}
         />
       )}
     </React.Fragment>
   );
 }
 
-SurveyList.propTypes = {
-  SurveyList: PropTypes.array,
-  onSurveySelection: PropTypes.func,
+ProductList.propTypes = {
+  ProductList: PropTypes.array,
+  onProductSelection: PropTypes.func,
   onDashboardClick: PropTypes.func
 };
 
-export default SurveyList;
+export default ProductList;

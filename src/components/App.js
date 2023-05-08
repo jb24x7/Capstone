@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header';
-import SurveyControl from './SurveyControl';
+import ProductControl from './ProductControl';
 import SignIn from "./SignIn";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/sign-in" element={<SignIn
             onSignIn={handleUserEmail} />} />
-          <Route path="/" element={<SurveyControl userEmail={userEmail} />} />
+          <Route path="/" element={<ProductControl userEmail={userEmail} />} />
         </Routes>
       </Router>
     </React.Fragment>
