@@ -1,13 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 import ProductList from "./ProductList";
-import NewVariableProduct from "./NewVariableProduct";
 import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc, query, where, getDocs, getDoc, getFirestore } from "firebase/firestore";
 import NewProduct from "./Newproduct";
 import EditProductForm from "./EditProduct";
-import ProductDetail from "./ProductDetail";
-import DashBoard from "./Dashboard";
-import VariableDetail from "./VariableDetail";
 
 function ProductControl(props) {
 
@@ -16,10 +12,6 @@ function ProductControl(props) {
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [editing, setEditing] = useState(false);
-  const [dashboardDisplay, setDashboardDisplay] = useState(false);
-  const [answersList, setAnswersList] = useState([]);
-  const [questionsList, setQuestionsList] = useState([]);
-  const [variableForm, setVariableForm] = useState(false);
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
