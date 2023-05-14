@@ -9,7 +9,7 @@ function ProductDetail(props) {
     <React.Fragment>
         <h1>this is the creator: {product.creatorEmail}</h1>
         <h1>{product.name}</h1><br />
-        <h3>{product.question1}</h3><br />
+        <h3>{product.price}</h3><br />
 
       {product.creatorEmail !== props.currentUserEmail ? null : <button onClick={props.onClickingEdit}>Update Product</button>}
       {product.creatorEmail !== props.currentUserEmail ? null : <button onClick={() => onClickingDelete(product.id)}>Delete Product</button>}

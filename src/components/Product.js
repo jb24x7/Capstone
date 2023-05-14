@@ -5,7 +5,7 @@ function Product(props) {
   return (
     <React.Fragment>
       <div onClick={() => props.whenProductClicked(props.id)}>
-        <h3>{props.name}</h3>
+        <h3>{props.name}  {props.price}  {props.quantity}  {props.image}</h3>
         <hr />
       </div>
     </React.Fragment>

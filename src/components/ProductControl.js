@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 import ProductList from "./ProductList";
 import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc, query, where, getDocs, getDoc, getFirestore } from "firebase/firestore";
-import NewProduct from "./Newproduct";
-import EditProductForm from "./EditProduct";
+import NewProduct from "./NewProduct";
+// import EditProductForm from "./EditProduct";
 
 function ProductControl(props) {
 
@@ -35,41 +35,8 @@ function ProductControl(props) {
     return () => unSubscribe();
   }, []);
 
-  useEffect(() => {
-    if (!selectedProduct) return;
-
-    const selectedId = selectedProduct.id;
-    const q = query(collection(db, "answers"), where("productId", "==", selectedId));
-
-    const unSubscribe = onSnapshot(q, (querySnapshot) => {
-      const answers = [];
-      querySnapshot.forEach((doc) => {
-        answers.push({ id: doc.id, ...doc.data() });
-      });
-      setAnswersList(answers);
-    });
-
-    return () => {
-      if (unSubscribe) unSubscribe();
-    };
-  }, [selectedProduct]);
 
 
-  const updateQuestionList = (id) => {
-    
-      (async () => {
-        const db = getFirestore();
-        const docRef = doc(db, "products", id);
-
-        try {
-          const docSnap = await getDoc(docRef);
-          console.log(docSnap.data().questions);
-          setQuestionsList(docSnap.data().questions);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-  };
 
 
   const handleClick = () => {
@@ -87,9 +54,6 @@ function ProductControl(props) {
     console.log("setting edit to true");
   };
 
-  const handleDashboardClick = () => {
-    setDashboardDisplay(true);
-  };
 
   const handleEditingProductInList = async (productToEdit) => {
     const productRef = doc(db, "products", productToEdit.id);
@@ -111,7 +75,6 @@ function ProductControl(props) {
   const handleChangingSelectedProduct = (id) => {
     const selection = mainProductList.filter(product => product.id === id)[0];
     setSelectedProduct(selection);
-    updateQuestionList(id);
   };
 
   const handleSendingProduct = async (productAnswers) => {
@@ -124,14 +87,14 @@ function ProductControl(props) {
 
   if (error) {
     currentlyVisibleState = <p>There was an error: {error}</p>;
-  } else if (editing) {
-    currentlyVisibleState =
-      <EditProductForm
-        product={selectedProduct}
-        onEditProduct={handleEditingProductInList}
-      />;
-    buttonText = "Return to list";
-  } else if (formVisibleOnPage) {
+  // } else if (editing) {
+  //   currentlyVisibleState =
+  //     <EditProductForm
+  //       product={selectedProduct}
+  //       onEditProduct={handleEditingProductInList}
+  //     />;
+  //   buttonText = "Return to list";
+  // } else if (formVisibleOnPage) {
     currentlyVisibleState =
       <NewProduct
         onNewProductCreation={handleAddingNewProductToList}
@@ -141,7 +104,6 @@ function ProductControl(props) {
     currentlyVisibleState = <ProductList
       onProductSelection={handleChangingSelectedProduct}
       productList={mainProductList}
-      onDashboardClick={handleDashboardClick}
     />;
     buttonText = "New Product";
   }

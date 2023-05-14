@@ -10,6 +10,9 @@ function NewProduct(props) {
     props.onNewProductCreation({
       creatorEmail: props.currentUserEmail,
       name: event.target.name.value,
+      price: event.target.price.value,
+      quantity: event.target.quantity.value,
+      image: event.target.image.value,
     });
   }
 
