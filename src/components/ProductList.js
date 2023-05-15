@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 function ProductList(props) {
   return (
     <React.Fragment>
-      <button onClick={props.onDashboardClick}>Dashboard</button>
       {props.productList.map((product) =>
         <Product
           whenProductClicked={props.onProductSelection}
@@ -21,7 +20,6 @@ function ProductList(props) {
 ProductList.propTypes = {
   ProductList: PropTypes.array,
   onProductSelection: PropTypes.func,
-  onDashboardClick: PropTypes.func
 };
 
 export default ProductList;

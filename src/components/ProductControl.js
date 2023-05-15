@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 import ProductList from "./ProductList";
 import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc, query, where, getDocs, getDoc, getFirestore } from "firebase/firestore";
-import NewProduct from "./NewProduct";
+import NewProduct from "./NewProduct"
 // import EditProductForm from "./EditProduct";
 
 function ProductControl(props) {
@@ -22,7 +22,9 @@ function ProductControl(props) {
           products.push({
             creatorEmail: doc.data().creatorEmail,
             name: doc.data().name,
-            questions: doc.data().questions,
+            price: doc.data().price,
+            quantity: doc.data().quantity,
+            image: doc.data().image,
             id: doc.id
           });
         });
@@ -94,7 +96,7 @@ function ProductControl(props) {
   //       onEditProduct={handleEditingProductInList}
   //     />;
   //   buttonText = "Return to list";
-  // } else if (formVisibleOnPage) {
+  } else if (formVisibleOnPage) {
     currentlyVisibleState =
       <NewProduct
         onNewProductCreation={handleAddingNewProductToList}
