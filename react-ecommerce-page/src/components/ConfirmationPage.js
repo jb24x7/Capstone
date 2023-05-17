@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  } from "react";
 import { Text, Box, Button } from '@chakra-ui/react';
 
 function ConfirmationPage(props) {

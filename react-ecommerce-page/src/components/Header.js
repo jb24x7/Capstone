@@ -20,10 +20,6 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
   const handleCartClick = () => {
     onCartClick();
   };
-  const handleAccountClick = () => {
-    onAccountClick();
-  };
-
   return (
     <Box>
       <Flex
@@ -65,7 +61,6 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
                 <Box key={navItem.label}>
                   <NavLink
                     p={2}
-                    // href={navItem.href ?? '#'}
                     to={navItem.to}
                     fontSize={'sm'}
                     fontWeight={500}

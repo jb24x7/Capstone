@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  SimpleGrid, Box, Button, Divider, CardFooter, ButtonGroup,
-  Image, Text, AspectRatio, VStack, Stack, Flex, Heading, HStack,
-  Link, useColorMode, useColorModeValue as mode,
+  Box, 
+  VStack, Flex
+  ,
 } from "@chakra-ui/react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import UserDetails from "./UserDetails";

@@ -12,7 +12,7 @@ function App() {
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
   const [userCredentialInfo, setUserCredentialInfo] = useState(null);
   const [cartVisible, setCartVisible] = useState(false);
-  const [accountPageVisible, setAccountPageVisible] = useState(false);
+
 
   function handleSignInSuccess(userCredential) {
     setUserCredentialInfo(userCredential);
@@ -25,10 +25,7 @@ function App() {
   function handleCartClick() {
     setCartVisible(true);
   }
-  function handleAccountClick() {
-    setAccountPageVisible(true);
-    console.log(cartVisible);
-  }
+
 
   return (
     <ChakraProvider theme={theme}>
@@ -37,7 +34,6 @@ function App() {
           <Header
             onAddProduct={handleAddProduct}
             onCartClick={handleCartClick}
-            onAccountClick={handleAccountClick}
             userCredentialInfo={userCredentialInfo}
           />
           <Grid minH="100vh" minW="100vh" columns={{ sm: 1, md: 2, lg: 3 }} spacing={10}>
@@ -52,8 +48,6 @@ function App() {
                   setCartVisible={setCartVisible}
                   cartVisible={cartVisible}
                   userCredentialInfo={userCredentialInfo}
-                  accountPageVisible={accountPageVisible}
-                  setAccountPageVisible={setAccountPageVisible}
                 />} />
               </Routes>
             </VStack>

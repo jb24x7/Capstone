@@ -10,7 +10,6 @@ function NewProductForm(props) {
 
   const [isUploading, setIsUploading] = useState(false);
 
-  // here we destructure props to be able to make it easier to understand and reason about.
   const user = props.userCredentialInfo;
   const userEmail = user ? user.email : null;
 

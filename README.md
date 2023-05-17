@@ -16,3 +16,5 @@
 * 8:00 trying to debug errors
 #### Wednesday 
 * 12:05am Starting fresh as could not locate error
+* 10:00am Finishing rebuilding
+* 1:00pm Fixing minor issues

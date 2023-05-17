@@ -3,9 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ProductList from "./ProductList";
 import ProductDetail from "./ProductDetail";
 import { db } from "../firebase";
-import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc, query, orderBy } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import NewProductForm from "./NewProductForm";
-import { Route, Routes, Outlet } from 'react-router-dom';
 import EditProduct from "./EditProduct";
 import ShoppingCart from "./ShoppingCart";
 import ConfirmationPage from "./ConfirmationPage";
@@ -112,11 +111,6 @@ function Control(props) {
     await updateDoc(productRef, productToEdit);
     setEditing(false);
     setSelectedProduct(null);
-  };
-
-  const handleUserAccountClick = () => {
-    props.setAccountPageVisible(true);
-    selectedProduct(null);
   };
 
   const handleBuyNowClick = () => {
