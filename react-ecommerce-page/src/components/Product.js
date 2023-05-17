@@ -10,7 +10,7 @@ import {
 function Product(props) {
   return (
     <React.Fragment>
-      <Card maxW='sm' onClick={() => props.whenProductClicked(props.id)} backgroundColor={"gray.100"}>
+      <Card maxW='sm' onClick={() => props.whenProductClicked(props.id)}>
         <CardBody>
           <Box h="200px" bgImage={`url(${props.imageUrl})`} bgSize="cover" bgPosition="center" />
           <Stack mt='2' spacing='3' textAlign="left">
