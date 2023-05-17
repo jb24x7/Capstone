@@ -60,7 +60,6 @@ function Control(props) {
       props.setFormVisibleOnPage(false);
       props.setCartVisible(false);
       setConfirmationVisible(false);
-      props.setAccountPageVisible(false);
     }
   };
 
@@ -72,7 +71,6 @@ function Control(props) {
     console.log("selected product is: ")
     console.log(selection)
 
-    props.setAccountPageVisible(false);
     setSelectedProduct(selection);
 
     console.log("Again, selected product is: ")
