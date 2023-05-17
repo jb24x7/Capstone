@@ -9,7 +9,6 @@ import { Route, Routes, Outlet } from 'react-router-dom';
 import EditProduct from "./EditProduct";
 import ShoppingCart from "./ShoppingCart";
 import ConfirmationPage from "./ConfirmationPage";
-import UserAccount from "./UserAccount";
 import Chekcout from "./Chekcout";
 
 function Control(props) {
@@ -91,10 +90,14 @@ function Control(props) {
     console.log("setting edit to true");
   };
 
-  const handleBuyClick = () => {
-    setUserCart((prevUserCart) => [...userCart, selectedProduct]);
-    setEditing(false);
-    setSelectedProduct(null)
+  const handleAddToCart = () => {
+    if (userCart.includes(selectedProduct)) {
+      alert("This Product Is Already In The Cart");
+    } else {
+      setUserCart((prevUserCart) => [...userCart, selectedProduct]);
+      setEditing(false);
+      setSelectedProduct(null);
+    }
     console.log("item added to cart");
     console.log("the cart is now: " + userCart);
   };
@@ -145,21 +148,12 @@ function Control(props) {
       product={selectedProduct}
     />;
     buttonText = "Return to list of products";
-  } else if (props.accountPageVisible) {
-    CurrentlyVisibleState = <UserAccount
-      userCart={userCart}
-      removeFromCart={removeFromCart}
-      onProductSelection={handleChangingSelectedProduct}
-      productList={mainProductList}
-      userAccountClicked={handleUserAccountClick}
-      userCredentialInfo={props.userCredentialInfo} />;
-    buttonText = "Return to list of products";
-  } else if (selectedProduct != null) {
+  }  else if (selectedProduct != null) {
     CurrentlyVisibleState = <ProductDetail
       userCredentialInfo={props.userCredentialInfo}
       productList={mainProductList}
       onClickingEdit={handleEditClick}
-      onClickingBuy={handleBuyClick}
+      onClickAddToCart={handleAddToCart}
       product={selectedProduct} />;
     buttonText = "Return to list of products";
   } else if (props.formVisibleOnPage) {

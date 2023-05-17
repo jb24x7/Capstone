@@ -22,7 +22,7 @@ function ProductDetail(props) {
               style={{
                 maxWidth: "400px",
                 minWidth: "250px",
-                maxHeight: "400px",
+                maxHeight: "500px",
                 minHeight: "250px",
                 margin: "auto",
                 display: "block",
@@ -54,7 +54,7 @@ function ProductDetail(props) {
         of editing the product. Otherwise the user only has the option to add it to their cart.*/}
             {props.product.user !== userEmail ? (
               <Button
-                onClick={props.onClickingBuy}
+                onClick={props.onClickAddToCart}
                 colorScheme="blue"
                 variant="solid"
                 mt={4}
@@ -72,29 +72,8 @@ function ProductDetail(props) {
               </Button>
             )}
           </Box>
-          <Box gridColumn="1" gridRow="2">
-            <Box id="seller">
-              <Divider />
-              <Text>Sold by: {props.product.user}</Text>
-            </Box>
-          </Box>
         </Grid>
         </Box>
-        <Text fontWeight={"bold"}>More from this seller</Text>
-        <SimpleGrid columns={3} spacing={10}>
-          {sellerList.map((product) =>
-            <Product
-              whenProductClicked={props.onProductSelection}
-              imageUrl={product.imageUrl}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              user={product.user}
-              id={product.id}
-              key={product.id}
-            />
-          )}
-        </SimpleGrid>
     </React.Fragment>
   );
 }

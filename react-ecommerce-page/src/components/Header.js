@@ -87,20 +87,12 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
           justify={'flex-end'}
           direction={'row'}
           spacing={6} >
-
-          {userCredentialInfo ? (<Button
-            variant={'ghost'}
-            onClick={handleAccountClick}
-            fontSize={'sm'}
-            fontWeight={400}
-          >Account
-          </Button>) : null}
           {userCredentialInfo ? (<Button
             variant={'ghost'}
             onClick={handleCartClick}
             fontSize={'sm'}
             fontWeight={400}
-          >Cart
+          > <img className='cartPic' src={"https://t4.ftcdn.net/jpg/02/40/53/03/360_F_240530324_va99UIdFaOD3mEEu34r1bjDIQADOF8L0.jpg"} alt="Cart" width="20" height="20" />
           </Button>) : null}
           {userCredentialInfo ? (<Button
             variant={'ghost'}
@@ -109,6 +101,7 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
             fontWeight={400}
           >Product
           </Button>) : null}
+          {!userCredentialInfo ?
           <Button
             as={'a'}
             fontSize={'sm'}
@@ -116,7 +109,8 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
             variant={'link'}
             href={'/sign-in'}>
             Sign In
-          </Button>
+          </Button> :null}
+          {!userCredentialInfo ?
           <Button
             as={'a'}
             display={{ base: 'none', md: 'inline-flex' }}
@@ -129,7 +123,7 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
               bg: 'pink.300',
             }}>
             Sign Up
-          </Button>
+          </Button> :null}
         </Stack>
       </Flex>
       <Collapse in={isOpen} animateOpacity>
