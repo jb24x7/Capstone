@@ -3,7 +3,7 @@ import { ChakraProvider, Box, VStack, Grid, theme, } from '@chakra-ui/react';
 import SignIn from "./SignIn";
 import SignUp from './SignUp';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+// import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import Header from "./Header";
 import Control from './Control';
 
@@ -37,7 +37,6 @@ function App() {
             userCredentialInfo={userCredentialInfo}
           />
           <Grid minH="100vh" minW="100vh" columns={{ sm: 1, md: 2, lg: 3 }} spacing={10}>
-            <ColorModeSwitcher justifySelf="flex-end" />
             <VStack spacing={8}>
               <Routes>
                 <Route path="/sign-in" element={<SignIn onSignInSuccess={handleSignInSuccess} />} />

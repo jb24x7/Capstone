@@ -4,6 +4,7 @@ import {
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, } from '@chakra-ui/icons';
+import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 export default function Header({ onAddProduct, onCartClick, onAccountClick, userCredentialInfo }) {
   const { isOpen, onToggle } = useDisclosure();
@@ -119,6 +120,7 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
             }}>
             Sign Up
           </Button> :null}
+          <ColorModeSwitcher justifySelf="flex-end" />
         </Stack>
       </Flex>
       <Collapse in={isOpen} animateOpacity>
