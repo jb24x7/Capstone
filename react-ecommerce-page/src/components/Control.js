@@ -93,6 +93,8 @@ function Control(props) {
 
   const handleBuyClick = () => {
     setUserCart((prevUserCart) => [...userCart, selectedProduct]);
+    setEditing(false);
+    setSelectedProduct(null)
     console.log("item added to cart");
     console.log("the cart is now: " + userCart);
   };
