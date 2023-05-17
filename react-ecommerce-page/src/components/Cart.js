@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { SimpleGrid, Box, Button, Divider, CardFooter, ButtonGroup, Card } from '@chakra-ui/react';
 import Product from "./Product";
 
-function ShoppingCart(props) {
+function Cart(props) {
   const { removeFromCart } = props;
 
   const handleRemoveId = (id) => {
@@ -47,4 +47,4 @@ function ShoppingCart(props) {
 
 }
 
-export default ShoppingCart;
+export default Cart;

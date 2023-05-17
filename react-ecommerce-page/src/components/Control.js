@@ -6,7 +6,7 @@ import { db } from "../firebase";
 import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import NewProductForm from "./NewProductForm";
 import EditProduct from "./EditProduct";
-import ShoppingCart from "./ShoppingCart";
+import Cart from "./Cart";
 import ConfirmationPage from "./ConfirmationPage";
 import Chekcout from "./Chekcout";
 
@@ -127,7 +127,7 @@ function Control(props) {
       productToEdit={selectedProduct} />;
     buttonText = "Return to list of products";
   } else if (props.cartVisible) {
-    CurrentlyVisibleState = <ShoppingCart
+    CurrentlyVisibleState = <Cart
       userCart={userCart}
       removeFromCart={removeFromCart}
       buyNowClick={handleBuyNowClick}
