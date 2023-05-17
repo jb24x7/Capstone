@@ -3,7 +3,7 @@ import { db, auth } from "../firebase";
 import ProductList from "./ProductList";
 import { collection, addDoc, doc, updateDoc, onSnapshot, deleteDoc, query, where, getDocs, getDoc, getFirestore } from "firebase/firestore";
 import NewProduct from "./NewProduct"
-// import EditProductForm from "./EditProduct";
+import EditProductForm from "./EditProduct";
 
 function ProductControl(props) {
 
@@ -89,13 +89,13 @@ function ProductControl(props) {
 
   if (error) {
     currentlyVisibleState = <p>There was an error: {error}</p>;
-  // } else if (editing) {
-  //   currentlyVisibleState =
-  //     <EditProductForm
-  //       product={selectedProduct}
-  //       onEditProduct={handleEditingProductInList}
-  //     />;
-  //   buttonText = "Return to list";
+  } else if (editing) {
+    currentlyVisibleState =
+      <EditProductForm
+        product={selectedProduct}
+        onEditProduct={handleEditingProductInList}
+      />;
+    buttonText = "Return to list";
   } else if (formVisibleOnPage) {
     currentlyVisibleState =
       <NewProduct
