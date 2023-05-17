@@ -23,12 +23,6 @@ const PurchaseSummary = (props) => {
     >
       <VStack alignItems="flex-start" spacing={3}>
         <Heading size="2xl">Your cart</Heading>
-        <Text>
-          If the price is too hard on your eyes,{' '}
-          <Button onClick={toggleColorMode} variant="link" colorScheme="black">
-            try changing the theme.
-          </Button>
-        </Text>
       </VStack>
       <HStack spacing={6} alignItems="center" w="full">
         <AspectRatio ratio={1} w={24}>
@@ -55,8 +49,9 @@ const PurchaseSummary = (props) => {
         </HStack>
       </VStack>
       <Divider />
-      <HStack justifyContent="space-between" w="full">
-        <Text color={secondaryTextColor}>Total</Text>
+      <HStack justifyContent="space-between" w="full" mt={4}>
+        <Text color={secondaryTextColor}>Total (Plus Tax)</Text>
+        <Text>${product.price * 1.03}</Text>
       </HStack>
     </VStack>
   );

@@ -10,7 +10,7 @@ function ProductList(props) {
 
   return (
     <React.Fragment>
-      <SimpleGrid columns={8} spacing={10}>
+      <SimpleGrid columns={8} spacing={10} paddingTop={15} paddingLeft={15}>
       {props.productList.map((product) =>
         <Product
           whenProductClicked={props.onProductSelection}

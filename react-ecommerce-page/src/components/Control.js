@@ -170,6 +170,7 @@ function Control(props) {
 
   return (
     <React.Fragment>
+      {CurrentlyVisibleState}
       <div style={{ marginTop: "-10px", paddingTop: "-10px" }}>
         {CurrentlyVisibleState.type !== ProductList ? (
           <button onClick={() => handleClick()} className="btn btn-primary" style={{ marginTop: "-10px" }}>
@@ -177,7 +178,7 @@ function Control(props) {
           </button>
         ) : null}
       </div>
-      {CurrentlyVisibleState}
+
     </React.Fragment>
   );
 };
