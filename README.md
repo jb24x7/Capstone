@@ -11,3 +11,8 @@
 * 2:00: Getting main functionallity into site
 * 8:00: Most functionallity in site
 * 10:00: getting Firebase to work fully after running into issues
+#### Tuesday 5/16
+* 12:00 trying to integrate chakra
+* 8:00 trying to debug errors
+#### Wednesday 
+* 12:05am Starting fresh as could not locate error
