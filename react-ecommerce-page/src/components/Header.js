@@ -54,7 +54,7 @@ export default function Header({ onAddProduct, onCartClick, onAccountClick, user
             fontFamily={'heading'}
             color={textColorModeValue}
           >
-            <Link to={'/'}>Logo</Link>
+            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDhas_vXy6R6rNAUn__jHbGlWYgB56E8pAg&usqp=CAU"} alt="Logo" width="40" height="40" />
           </Text>
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <Stack direction={'row'} spacing={4}>
