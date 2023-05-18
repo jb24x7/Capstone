@@ -58,8 +58,8 @@ function Cart(props) {
         ))}
       </SimpleGrid>
       <Button variant='solid' colorScheme='blue' onClick={() => buyAllClick()}>
-          Buy all
-        </Button>
+        Buy all
+      </Button>
     </React.Fragment>
   );
 }

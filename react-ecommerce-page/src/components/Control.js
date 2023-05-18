@@ -32,7 +32,7 @@ function Control(props) {
             description: doc.data().description,
             price: doc.data().price,
             imageUrl: doc.data().imageUrl,
-            user: doc.data().user,
+            userEmail: doc.data().userEmail,
             id: doc.id
           });
         });
@@ -53,9 +53,9 @@ function Control(props) {
       setSelectedProduct(null);
       setEditing(false);
       setCheckout(false);
-    } else if(checkout) {
+    } else if (checkout) {
       setCheckout(false);
-    } else{
+    } else {
       props.setFormVisibleOnPage(false);
       props.setCartVisible(false);
     }

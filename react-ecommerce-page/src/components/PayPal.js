@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Box } from '@chakra-ui/react';
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { query, collection, where, getDocs, deleteDocs } from "firebase/firestore";
+import { query, collection, where, getDocs, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 function PayPal({ currency, userEmail }) {
@@ -44,7 +44,7 @@ function PayPal({ currency, userEmail }) {
     // Clear cart items with matching userEmail
     const q = query(collection(db, "cart"), where("userEmail", "==", userEmail));
     const querySnapshot = await getDocs(q);
-    const deletePromises = querySnapshot.docs.map((doc) => deleteDocs(doc.ref));
+    const deletePromises = querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
     await Promise.all(deletePromises);
   };
 

@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebase";
 
-export const handleImageUpload = (event, imageUpload, setImageDownloadURL, setIsUploading ) => {
+export const handleImageUpload = (event, imageUpload, setImageDownloadURL, setIsUploading) => {
   event.preventDefault();
   if (imageUpload == null) return;
 

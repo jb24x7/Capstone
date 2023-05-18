@@ -26,16 +26,14 @@ function NewProductForm(props) {
       description: formData.get("description"),
       price: parseFloat(parseFloat(formData.get("price")).toFixed(2)),
       imageUrl: imageDownloadURL,
-      user: userEmail,
-      active: true,
-      shippingAddress: null
+      userEmail: userEmail,
 
     };
     addDoc(collection(db, "products"), productData)
       .then(() => {
         setIsUploading(false);
         props.setFormVisibleOnPage(false);
-        
+
       })
       .catch((error) => {
         console.error(error);

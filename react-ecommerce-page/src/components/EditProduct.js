@@ -1,5 +1,5 @@
 import ProductForm from "./ProductForm";
-import React, {  } from "react";
+import React, { } from "react";
 
 function EditProduct(props) {
   const { productToEdit } = props;
@@ -18,10 +18,10 @@ function EditProduct(props) {
 
   return (
     <React.Fragment>
-      <p> This is the edit page</p>
+      <p> Edit Product Here</p>
       <ProductForm product={props.productToEdit}
         formSubmissionHandler={handleEditProductFormSubmission}
-        buttonText="Edit Product"/>
+        buttonText="Edit Product" />
     </React.Fragment>
   );
 

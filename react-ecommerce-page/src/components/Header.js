@@ -1,17 +1,35 @@
+import { useState } from 'react';
 import {
-  Box, Flex, Text, IconButton, Button, Stack, Collapse, Icon, Link,
-  useColorModeValue, useBreakpointValue, useDisclosure
+  Box,
+  Flex,
+  Text,
+  IconButton,
+  Button,
+  Stack,
+  Collapse,
+  Icon,
+  Link,
+  useColorModeValue,
+  useBreakpointValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
-import { HamburgerIcon, CloseIcon, ChevronDownIcon, } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
-export default function Header({ onAddProduct, onCartClick, userCredentialInfo }) {
+
+export default function Header({
+  onAddProduct,
+  onCartClick,
+  userCredentialInfo,
+  onSignOut,
+}) {
   const { isOpen, onToggle } = useDisclosure();
   const colorModeValue = useColorModeValue('white', 'gray.800');
   const textColorModeValue = useColorModeValue('gray.600', 'white');
   const borderColorModeValue = useColorModeValue('gray.200', 'gray.900');
   const hoverColorModeValue = useColorModeValue('gray.800', 'white');
+  ;
 
   const handleAddProductClick = () => {
     onAddProduct();
@@ -20,6 +38,8 @@ export default function Header({ onAddProduct, onCartClick, userCredentialInfo }
   const handleCartClick = () => {
     onCartClick();
   };
+
+
   return (
     <Box>
       <Flex
@@ -53,7 +73,14 @@ export default function Header({ onAddProduct, onCartClick, userCredentialInfo }
             fontFamily={'heading'}
             color={textColorModeValue}
           >
-            <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDhas_vXy6R6rNAUn__jHbGlWYgB56E8pAg&usqp=CAU"} alt="Logo" width="40" height="40" />
+            <img
+              src={
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwDhas_vXy6R6rNAUn__jHbGlWYgB56E8pAg&usqp=CAU'
+              }
+              alt="Logo"
+              width="40"
+              height="40"
+            />
           </Text>
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <Stack direction={'row'} spacing={4}>
@@ -81,60 +108,100 @@ export default function Header({ onAddProduct, onCartClick, userCredentialInfo }
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-          spacing={6} >
-          {userCredentialInfo ? (<Button
-            variant={'ghost'}
-            onClick={handleCartClick}
-            fontSize={'sm'}
-            fontWeight={400}
-          > <img  src={"https://t4.ftcdn.net/jpg/02/40/53/03/360_F_240530324_va99UIdFaOD3mEEu34r1bjDIQADOF8L0.jpg"} alt="Cart" minW="10" minH="10" />
-          </Button>) : null}
-          {userCredentialInfo === "jb24x7@gmail.com" ? (<Button
-            variant={'ghost'}
-            onClick={handleAddProductClick}
-            fontSize={'sm'}
-            fontWeight={400}
-          >Create Product
-          </Button>) : null}
-          {!userCredentialInfo ?
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'/sign-in'}>
-            Sign In
-          </Button> :null}
-          {!userCredentialInfo ?
-          <Button
-            as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'/sign-up'}
-            _hover={{
-              bg: 'pink.300',
-            }}>
-            Sign Up
-          </Button> :null}
+          spacing={6}
+        >
+          {userCredentialInfo ? (
+            <Button
+              variant={'ghost'}
+              onClick={handleCartClick}
+              fontSize={'sm'}
+              fontWeight={400}
+              rounded={'md'}
+              colorScheme={'teal'}
+              _hover={{ bg: 'teal.50' }}
+            >
+              <img
+                src={
+                  'https://t4.ftcdn.net/jpg/02/40/53/03/360_F_240530324_va99UIdFaOD3mEEu34r1bjDIQADOF8L0.jpg'
+                }
+                alt="Cart"
+                minW="10"
+                minH="10"
+              />
+            </Button>
+          ) : null}
+          {userCredentialInfo === 'jb24x7@gmail.com' ? (
+            <Button
+              variant={'ghost'}
+              onClick={handleAddProductClick}
+              fontSize={'sm'}
+              fontWeight={400}
+              rounded={'md'}
+              colorScheme={'blue'}
+              _hover={{ bg: 'blue.50' }}
+            >
+              Add Product
+            </Button>
+          ) : null}
+          {!userCredentialInfo ? (
+            <Button
+              as={'a'}
+              fontSize={'sm'}
+              fontWeight={400}
+              variant={'link'}
+              href={'/sign-in'}
+              rounded={'md'}
+              colorScheme={'blue'}
+              _hover={{ bg: 'blue.50' }}
+            >
+              Sign In
+            </Button>
+          ) : null}
+          {!userCredentialInfo ? (
+            <Button
+              as={'a'}
+              display={{ base: 'none', md: 'inline-flex' }}
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              href={'/sign-up'}
+              rounded={'md'}
+              _hover={{
+                bg: 'pink.300',
+              }}
+            >
+              Sign Up
+            </Button>
+          ) : null}
+          {userCredentialInfo ? (
+            <Button
+              as={'a'}
+              fontSize={'sm'}
+              fontWeight={400}
+              variant={'link'}
+              onClick={onSignOut}
+              rounded={'md'}
+              colorScheme={'red'}
+              _hover={{ bg: 'red.50' }}
+            >
+              Sign Out
+            </Button>
+          ) : null}
           <ColorModeSwitcher justifySelf="flex-end" />
         </Stack>
       </Flex>
       <Collapse in={isOpen} animateOpacity>
         <MobileNav />
       </Collapse>
+
     </Box>
   );
 }
 
 const MobileNav = () => {
   return (
-    <Stack
-      bg={useColorModeValue('white', 'gray.800')}
-      p={4}
-      display={{ md: 'none' }}>
+    <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -156,13 +223,15 @@ const MobileNavItem = ({ label, children, href }) => {
           align={'center'}
           _hover={{
             textDecoration: 'none',
-          }}>
+          }}
+        >
           <Text
             as={href ? Link : 'div'}
             href={href ?? '#'}
             fontWeight={600}
             color={linkColor}
-            onClick={href ? undefined : onToggle}>
+            onClick={href ? undefined : onToggle}
+          >
             {label}
           </Text>
           {children && (
@@ -180,6 +249,9 @@ const MobileNavItem = ({ label, children, href }) => {
   );
 };
 
-const NAV_ITEMS = [{
-  label: 'Home', to: '/',
-},];
+const NAV_ITEMS = [
+  {
+    label: 'Home',
+    to: '/',
+  },
+];

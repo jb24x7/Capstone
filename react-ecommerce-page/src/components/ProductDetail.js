@@ -1,11 +1,13 @@
 import React from "react";
 import { Box, Button, Text, Flex, Divider, Grid, SimpleGrid } from '@chakra-ui/react';
-import Product from "./Product";
 
 function ProductDetail(props) {
   const { userEmail, product } = props;
-  const canAddToCart = userEmail !== product.user;
-  const canEdit = userEmail === product.user;
+  const canAddToCart = userEmail !== "jb24x7@gmail.com";
+  const canEdit = userEmail === "jb24x7@gmail.com";
+  console.log(userEmail)
+  console.log(product.userEmail)
+  console.log(product)
 
   return (
     <React.Fragment>
