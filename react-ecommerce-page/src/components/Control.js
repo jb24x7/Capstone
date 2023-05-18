@@ -103,11 +103,6 @@ function Control(props) {
     setSelectedProduct(null);
   };
 
-  const handleBuyNowClick = () => {
-    setCheckout(true);
-    props.setCartVisible(false);
-  };
-
   const handleBuyAllClick = () => {
     setCheckout(true);
     props.setCartVisible(false);
@@ -126,7 +121,6 @@ function Control(props) {
       userEmail={props.userEmail}
       userCart={userCart}
       removeFromCart={removeFromCart}
-      buyNowClick={handleBuyNowClick}
       buyAllClick={handleBuyAllClick}
       onProductSelection={handleChangingSelectedProduct}
       userCredentialInfo={props.userCredentialInfo} />;
@@ -166,7 +160,7 @@ function Control(props) {
   return (
     <React.Fragment>
       {CurrentlyVisibleState}
-      <div style={{ marginTop: "-10px", paddingTop: "-10px" }}>
+      <div style={{ marginTop: "10px", paddingTop: "10px" }}>
         {CurrentlyVisibleState.type !== ProductList ? (
           <button onClick={() => handleClick()} className="btn btn-primary" style={{ marginTop: "10px" }}>
             {buttonText}

@@ -16,11 +16,6 @@ function Cart(props) {
     }
   };
 
-  const buyNowClick = (id) => {
-    props.buyNowClick();
-    props.onProductSelection(id);
-  };
-
   const buyAllClick = (id) => {
     props.buyAllClick();
     props.onProductSelection(id);

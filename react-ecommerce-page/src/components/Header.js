@@ -87,9 +87,9 @@ export default function Header({ onAddProduct, onCartClick, userCredentialInfo }
             onClick={handleCartClick}
             fontSize={'sm'}
             fontWeight={400}
-          > <img className='cartPic' src={"https://t4.ftcdn.net/jpg/02/40/53/03/360_F_240530324_va99UIdFaOD3mEEu34r1bjDIQADOF8L0.jpg"} alt="Cart" width="20" height="20" />
+          > <img  src={"https://t4.ftcdn.net/jpg/02/40/53/03/360_F_240530324_va99UIdFaOD3mEEu34r1bjDIQADOF8L0.jpg"} alt="Cart" minW="20" minH="20" />
           </Button>) : null}
-          {userCredentialInfo ? (<Button
+          {userCredentialInfo === "jb24x7@gmail.com" ? (<Button
             variant={'ghost'}
             onClick={handleAddProductClick}
             fontSize={'sm'}
