@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, VStack, Flex, Image, Heading, HStack, AspectRatio, Stack, Text, useColorModeValue as mode } from "@chakra-ui/react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import UserDetails from "./UserDetails";
 import PayPal from "./PayPal";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
@@ -33,14 +32,10 @@ const Checkout = (props) => {
     }
   }, [userEmail]);
 
-  // Calculate the total price of all items in the cart
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 
   return (
     <Flex direction={{ base: "column", lg: "row" }} alignItems="stretch" gap={4}>
-      <Box flex={2}>
-        <UserDetails />
-      </Box>
       <Box flex={2}>
         <VStack spacing={2} alignItems="stretch">
           {cartItems.map((item) => (

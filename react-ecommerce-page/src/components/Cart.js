@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SimpleGrid, Box, Button, Divider, CardFooter, ButtonGroup, Card } from '@chakra-ui/react';
+import { SimpleGrid, Button, Card } from '@chakra-ui/react';
 import { collection, onSnapshot, deleteDoc, doc, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import Product from "./Product";

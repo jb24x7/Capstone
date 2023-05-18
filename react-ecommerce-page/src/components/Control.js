@@ -21,7 +21,6 @@ function Control(props) {
 
 
 
-  const { } = props;
 
   useEffect(() => {
     const unSubscribe = onSnapshot(

@@ -3,7 +3,6 @@ import { ChakraProvider, Box, VStack, Grid, theme, } from '@chakra-ui/react';
 import SignIn from "./SignIn";
 import SignUp from './SignUp';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import Header from "./Header";
 import Control from './Control';
 import { auth } from '../firebase';
@@ -14,7 +13,6 @@ function App() {
   const [userCredentialInfo, setUserCredentialInfo] = useState(null);
   const [cartVisible, setCartVisible] = useState(false);
   const [userEmail, setUserEmail] = useState(null);
-  const [signOutSuccess, setSignOutSuccess] = useState('')
 
   function handleSignInSuccess(userCredential) {
     setUserCredentialInfo(userCredential);

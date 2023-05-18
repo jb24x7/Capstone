@@ -7,45 +7,29 @@ function ProductForm(props) {
 
   const [imageUrl, setImageUrl] = useState(null);
 
-  // here we deconstruct the props passed down from NewProductForm. Names have been kept the same to make them easier to reason about.
-  const { formSubmissionHandler, product } = props;
 
-  // These slices of state are used to gather data from the form which users submit to create or edit a product.
-  // They are also used to pre-populate the form if the fields already exist in db.
+  const { formSubmissionHandler, product } = props;
   const [name, setName] = useState(product?.name || "");
   const [description, setDescription] = useState(product?.description || "");
   const [price, setPrice] = useState(product?.price || "");
-
-  // we can use the isUploading state to display a message to the user while an image is being uploaded to the db.
   const [isUploading, setIsUploading] = useState(false);
-  // these two states are used to target the selected image a user is uploading to the db.
   const [imageDownloadURL, setImageDownloadURL] = useState(null);
   const [imageUpload, setImageUpload] = useState(null);
 
-  // this function will be called when the user submits the form.
   function handleProductFormSubmission(event) {
     event.preventDefault();
-    // first the function checks to see if the user is uploading an image.  If so the handleImageUpload function is called.
-    // the form submission handler, which was passed down from NewProductForm will be called later once the image has been
-    // uploaded to the db.
+
     if (imageUrl) {
       handleImageUpload(event, imageUpload, setImageDownloadURL, setIsUploading);
-
-      // if no image is being uploaded to the db, the formSubmissionHandler is called immediately.
     } else {
-      // we do not need to pass in an event object to the formSubmissionHandler since we are targeting the form using it's id and using the FormData object in EditProduct.js
       formSubmissionHandler();
     }
   }
-
-  // we use the useEffect to watch for changes in the imageDownloadURL, once it has changed we know 
-  // the downloadURL has been received from the promise returned from Firebase. Once we have the imageDownloadURL, 
-  // we call the handleSubmit function where we will use the imageDownloadURL as a property for the product.
   useEffect(() => {
     if (imageDownloadURL) {
       formSubmissionHandler(imageDownloadURL);
     }
-  }, [imageDownloadURL]);
+  }, [formSubmissionHandler, imageDownloadURL]);
 
   return (
     <React.Fragment>
@@ -79,14 +63,11 @@ function ProductForm(props) {
               id="file-input"
               name="image"
               onChange={(e) => {
-
-                // updates state to declare an image is being uploaded
                 setImageUpload(e.target.files[0]);
                 setImageUrl(URL.createObjectURL(e.target.files[0]));
               }}
             />
           </p>
-          {/* this will create a preview image of the image the user has chosen to upload to the db. */}
           {imageUrl && <img src={imageUrl}
             alt="Preview"
             style={{ width: "100px", height: "100px", objectFit: "cover" }}

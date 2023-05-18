@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Text, Flex, Divider, Grid, SimpleGrid } from '@chakra-ui/react';
+import { Box, Button, Text, Grid } from '@chakra-ui/react';
 
 function ProductDetail(props) {
   const { userEmail, product } = props;
