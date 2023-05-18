@@ -10,10 +10,10 @@ import {
 function Product(props) {
   return (
     <React.Fragment>
-      <Card maxW='sm' onClick={() => props.whenProductClicked(props.id)}>
+      <Card maxW='sm' minW="200px" onClick={() => props.whenProductClicked(props.id)}>
         <CardBody>
           <Box h="200px" bgImage={`url(${props.imageUrl})`} bgSize="cover" bgPosition="center" />
-          <Stack mt='2' spacing='3' textAlign="center"> {/* Updated textAlign to "center" */}
+          <Stack mt='2' spacing='3' textAlign="center">
             <Text>
               {props.name.length > 25 ? `${props.name.substring(0, 25)}...` : props.name}
             </Text>

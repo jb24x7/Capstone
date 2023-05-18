@@ -136,7 +136,7 @@ function Control(props) {
     buttonText = "Products";
   } else if (selectedProduct != null) {
     CurrentlyVisibleState = <ProductDetail
-      userCredentialInfo={props.userCredentialInfo}
+      userEmail={props.userEmail}
       productList={mainProductList}
       onClickingEdit={handleEditClick}
       onClickAddToCart={handleAddToCart}

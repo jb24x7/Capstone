@@ -101,7 +101,6 @@ function ProductForm(props) {
               step="0.01"
             />
           </p>
-          Total cost calculate: $$$
           <span>
             <button
               type="submit"
