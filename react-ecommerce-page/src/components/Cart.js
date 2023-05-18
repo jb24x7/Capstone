@@ -1,29 +1,52 @@
-import ProductForm from "./ProductForm";
-import { handleImageUpload } from "./ImageUpload";
 import React, { useState, useEffect } from "react";
 import { SimpleGrid, Box, Button, Divider, CardFooter, ButtonGroup, Card } from '@chakra-ui/react';
+import { collection, onSnapshot, deleteDoc, doc, query, where } from "firebase/firestore";
+import { db } from "../firebase";
 import Product from "./Product";
 
 function Cart(props) {
-  const { removeFromCart } = props;
+  const { userEmail } = props;
+  const [filteredCart, setFilteredCart] = useState([]);
 
-  const handleRemoveId = (id) => {
-    removeFromCart(id);
+  const handleRemoveId = async (id) => {
+    try {
+      await deleteDoc(doc(db, "cart", id));
+    } catch (error) {
+      console.log("Error removing item from cart:", error);
+    }
   };
 
   const buyNowClick = (id) => {
     props.buyNowClick();
     props.onProductSelection(id);
-  }
+  };
+
   const buyAllClick = (id) => {
     props.buyAllClick();
     props.onProductSelection(id);
-  }
+  };
+
+  useEffect(() => {
+    if (userEmail) {
+      const q = query(collection(db, "cart"), where("userEmail", "==", userEmail));
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const cartItems = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setFilteredCart(cartItems);
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [userEmail]);
 
   return (
     <React.Fragment>
       <SimpleGrid columns={3} spacing={10}>
-        {props.userCart.map((product) => (
+        {filteredCart.map((product) => (
           <Card key={product.id}>
             <Button onClick={() => handleRemoveId(product.id)}>X</Button>
             <Product
@@ -41,17 +64,17 @@ function Cart(props) {
                 <Button variant='solid' colorScheme='blue' onClick={() => buyNowClick(product.id)}>
                   Buy now
                 </Button>
-                <Button variant='solid' colorScheme='blue' onClick={() => buyAllClick()}>
-                  Buy now
-                </Button>
               </ButtonGroup>
             </CardFooter>
           </Card>
+
         ))}
       </SimpleGrid>
+      <Button variant='solid' colorScheme='blue' onClick={() => buyAllClick()}>
+          Buy all
+        </Button>
     </React.Fragment>
   );
-
 }
 
 export default Cart;

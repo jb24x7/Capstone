@@ -6,13 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, } from '@chakra-ui/icons';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
-export default function Header({ onAddProduct, onCartClick, onAccountClick, userCredentialInfo }) {
+export default function Header({ onAddProduct, onCartClick, userCredentialInfo }) {
   const { isOpen, onToggle } = useDisclosure();
   const colorModeValue = useColorModeValue('white', 'gray.800');
   const textColorModeValue = useColorModeValue('gray.600', 'white');
   const borderColorModeValue = useColorModeValue('gray.200', 'gray.900');
   const hoverColorModeValue = useColorModeValue('gray.800', 'white');
   const hoverTextColorModeValue = useColorModeValue('gray.600', 'gray.200');
+  console.log(userCredentialInfo)
 
   const handleAddProductClick = () => {
     onAddProduct();

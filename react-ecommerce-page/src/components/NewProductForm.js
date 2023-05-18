@@ -28,8 +28,6 @@ function NewProductForm(props) {
       imageUrl: imageDownloadURL,
       user: userEmail,
       active: true,
-      shipped: false,
-      purchaser: null,
       shippingAddress: null
 
     };

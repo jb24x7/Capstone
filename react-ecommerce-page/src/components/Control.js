@@ -78,14 +78,16 @@ function Control(props) {
     setEditing(true);
   };
 
-  const handleAddToCart = () => {
-    if (userCart.includes(selectedProduct)) {
-      alert("This Product Is Already In The Cart");
-    } else {
-      setUserCart((prevUserCart) => [...userCart, selectedProduct]);
-      setEditing(false);
-      setSelectedProduct(null);
-    }
+  const handleAddToCart = async () => {
+    const cartInfo = {
+      name: selectedProduct.name,
+      price: selectedProduct.price,
+      imageUrl: selectedProduct.imageUrl,
+      userEmail: props.userEmail
+    };
+    await addDoc(collection(db, "cart"), cartInfo);
+    setEditing(false);
+    setSelectedProduct(null);
   };
 
   const removeFromCart = (id) => {
@@ -119,6 +121,7 @@ function Control(props) {
     buttonText = "Return to list of products";
   } else if (props.cartVisible) {
     CurrentlyVisibleState = <Cart
+      userEmail={props.userEmail}
       userCart={userCart}
       removeFromCart={removeFromCart}
       buyNowClick={handleBuyNowClick}
@@ -128,13 +131,14 @@ function Control(props) {
     buttonText = "Return to list of products";
   } else if (checkout) {
     CurrentlyVisibleState = <Chekcout
+      userEmail={props.userEmail}
       userCart={userCart}
       onProductSelection={handleChangingSelectedProduct}
       userCredentialInfo={props.userCredentialInfo}
       product={selectedProduct}
     />;
     buttonText = "Return to list of products";
-  }  else if (selectedProduct != null) {
+  } else if (selectedProduct != null) {
     CurrentlyVisibleState = <ProductDetail
       userCredentialInfo={props.userCredentialInfo}
       productList={mainProductList}
