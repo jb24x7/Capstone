@@ -36,7 +36,6 @@ function NewProductForm(props) {
     addDoc(collection(db, "products"), productData)
       .then(() => {
         setIsUploading(false);
-        props.setConfirmationVisible(true);
         props.setFormVisibleOnPage(false);
         
       })

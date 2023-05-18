@@ -12,8 +12,6 @@ export const handleImageUpload = (event, imageUpload, setImageDownloadURL, setIs
     .then((snapshot) => snapshot.metadata.fullPath)
     .then(() => getDownloadURL(imageRef))
     .then((downloadURL) => {
-      alert("Image Uploaded");
-      console.log(downloadURL);
       setImageDownloadURL(downloadURL);
       setIsUploading(false);
     })

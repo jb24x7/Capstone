@@ -15,6 +15,10 @@ function Cart(props) {
     props.buyNowClick();
     props.onProductSelection(id);
   }
+  const buyAllClick = (id) => {
+    props.buyNowClick();
+    props.onProductSelection(id);
+  }
 
   return (
     <React.Fragment>
@@ -35,6 +39,9 @@ function Cart(props) {
             <CardFooter>
               <ButtonGroup spacing='2'>
                 <Button variant='solid' colorScheme='blue' onClick={() => buyNowClick(product.id)}>
+                  Buy now
+                </Button>
+                <Button variant='solid' colorScheme='blue' onClick={() => buyAllClick()}>
                   Buy now
                 </Button>
               </ButtonGroup>

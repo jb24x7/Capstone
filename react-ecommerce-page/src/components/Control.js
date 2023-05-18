@@ -7,7 +7,7 @@ import { collection, addDoc, doc, updateDoc, onSnapshot } from "firebase/firesto
 import NewProductForm from "./NewProductForm";
 import EditProduct from "./EditProduct";
 import Cart from "./Cart";
-import ConfirmationPage from "./ConfirmationPage";
+
 import Chekcout from "./Chekcout";
 
 function Control(props) {
@@ -17,7 +17,6 @@ function Control(props) {
   const [error, setError] = useState(null);
   const [editing, setEditing] = useState(false);
   const [userCart, setUserCart] = useState([]);
-  const [confirmationVisible, setConfirmationVisible] = useState(false);
   const [checkout, setCheckout] = useState(false);
 
   const { } = props;
@@ -54,12 +53,9 @@ function Control(props) {
       setSelectedProduct(null);
       setEditing(false);
       setCheckout(false);
-      console.log("account page visible:");
-      console.log(props.accountPageVisible);
     } else {
       props.setFormVisibleOnPage(false);
       props.setCartVisible(false);
-      setConfirmationVisible(false);
     }
   };
 
@@ -68,13 +64,9 @@ function Control(props) {
     if (props.cartVisible) {
       props.setCartVisible(false);
     }
-    console.log("selected product is: ")
-    console.log(selection)
 
     setSelectedProduct(selection);
 
-    console.log("Again, selected product is: ")
-    console.log(selectedProduct);
   };
 
   const handleAddingNewProductToList = async (newProductData) => {
@@ -84,7 +76,6 @@ function Control(props) {
 
   const handleEditClick = () => {
     setEditing(true);
-    console.log("setting edit to true");
   };
 
   const handleAddToCart = () => {
@@ -95,8 +86,6 @@ function Control(props) {
       setEditing(false);
       setSelectedProduct(null);
     }
-    console.log("item added to cart");
-    console.log("the cart is now: " + userCart);
   };
 
   const removeFromCart = (id) => {
@@ -105,7 +94,6 @@ function Control(props) {
 
   const handleEditingProduct = async (productToEdit) => {
     const productRef = doc(db, "products", productToEdit.id);
-    console.log("We've hit the handleEditing Product function");
     await updateDoc(productRef, productToEdit);
     setEditing(false);
     setSelectedProduct(null);
@@ -152,12 +140,7 @@ function Control(props) {
     CurrentlyVisibleState = <NewProductForm
       setFormVisibleOnPage={props.setFormVisibleOnPage}
       onNewProductCreation={handleAddingNewProductToList}
-      setConfirmationVisible={setConfirmationVisible}
       userCredentialInfo={props.userCredentialInfo} />;
-    buttonText = "Return to list of products";
-  } else if (confirmationVisible) {
-    CurrentlyVisibleState = <ConfirmationPage
-      setFormVisibleOnPage={props.setFormVisibleOnPage} />;
     buttonText = "Return to list of products";
   } else {
     CurrentlyVisibleState = <ProductList
