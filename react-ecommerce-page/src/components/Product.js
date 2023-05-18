@@ -19,7 +19,7 @@ function Product(props) {
             </Text>
           </Stack>
         </CardBody>
-        <CardFooter>
+        <CardFooter display="flex" alignItems="center" justifyContent="center">
           <Stack spacing='3' textAlign="left">
             <Text fontWeight={"bold"} fontSize='2xl'>
               ${props.price}
