@@ -96,7 +96,7 @@ export default function Header({ onAddProduct, onCartClick, userCredentialInfo }
             onClick={handleAddProductClick}
             fontSize={'sm'}
             fontWeight={400}
-          >Product
+          >Create Product
           </Button>) : null}
           {!userCredentialInfo ?
           <Button

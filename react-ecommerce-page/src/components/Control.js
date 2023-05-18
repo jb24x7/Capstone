@@ -8,7 +8,7 @@ import NewProductForm from "./NewProductForm";
 import EditProduct from "./EditProduct";
 import Cart from "./Cart";
 
-import Chekcout from "./Chekcout";
+import Chekcout from "./Chekout";
 
 function Control(props) {
 
@@ -53,7 +53,9 @@ function Control(props) {
       setSelectedProduct(null);
       setEditing(false);
       setCheckout(false);
-    } else {
+    } else if(checkout) {
+      setCheckout(false);
+    } else{
       props.setFormVisibleOnPage(false);
       props.setCartVisible(false);
     }
@@ -118,7 +120,7 @@ function Control(props) {
       userCredentialInfo={props.userCredentialInfo}
       onEditProduct={handleEditingProduct}
       productToEdit={selectedProduct} />;
-    buttonText = "Return to list of products";
+    buttonText = "Products";
   } else if (props.cartVisible) {
     CurrentlyVisibleState = <Cart
       userEmail={props.userEmail}
@@ -128,7 +130,7 @@ function Control(props) {
       buyAllClick={handleBuyAllClick}
       onProductSelection={handleChangingSelectedProduct}
       userCredentialInfo={props.userCredentialInfo} />;
-    buttonText = "Return to list of products";
+    buttonText = "Products";
   } else if (checkout) {
     CurrentlyVisibleState = <Chekcout
       userEmail={props.userEmail}
@@ -137,7 +139,7 @@ function Control(props) {
       userCredentialInfo={props.userCredentialInfo}
       product={selectedProduct}
     />;
-    buttonText = "Return to list of products";
+    buttonText = "Products";
   } else if (selectedProduct != null) {
     CurrentlyVisibleState = <ProductDetail
       userCredentialInfo={props.userCredentialInfo}
@@ -145,13 +147,13 @@ function Control(props) {
       onClickingEdit={handleEditClick}
       onClickAddToCart={handleAddToCart}
       product={selectedProduct} />;
-    buttonText = "Return to list of products";
+    buttonText = "Products";
   } else if (props.formVisibleOnPage) {
     CurrentlyVisibleState = <NewProductForm
       setFormVisibleOnPage={props.setFormVisibleOnPage}
       onNewProductCreation={handleAddingNewProductToList}
       userCredentialInfo={props.userCredentialInfo} />;
-    buttonText = "Return to list of products";
+    buttonText = "Products";
   } else {
     CurrentlyVisibleState = <ProductList
       onProductSelection={handleChangingSelectedProduct}
@@ -166,7 +168,7 @@ function Control(props) {
       {CurrentlyVisibleState}
       <div style={{ marginTop: "-10px", paddingTop: "-10px" }}>
         {CurrentlyVisibleState.type !== ProductList ? (
-          <button onClick={() => handleClick()} className="btn btn-primary" style={{ marginTop: "-10px" }}>
+          <button onClick={() => handleClick()} className="btn btn-primary" style={{ marginTop: "10px" }}>
             {buttonText}
           </button>
         ) : null}

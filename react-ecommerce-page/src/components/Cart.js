@@ -58,14 +58,6 @@ function Cart(props) {
               id={product.id}
               key={product.id}
             />
-            <Divider />
-            <CardFooter>
-              <ButtonGroup spacing='2'>
-                <Button variant='solid' colorScheme='blue' onClick={() => buyNowClick(product.id)}>
-                  Buy now
-                </Button>
-              </ButtonGroup>
-            </CardFooter>
           </Card>
 
         ))}

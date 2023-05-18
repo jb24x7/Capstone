@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { Box } from '@chakra-ui/react';
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { query, collection, where, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
-function PayPal({ currency, showSpinner, product }) {
+function PayPal({ currency, userEmail }) {
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+  const [totalPrice, setTotalPrice] = React.useState(0);
 
   useEffect(() => {
     dispatch({
@@ -13,19 +16,32 @@ function PayPal({ currency, showSpinner, product }) {
         currency: currency,
       },
     });
-  }, [currency, showSpinner]);
 
-  let price = parseFloat(product.price);
-  const amount = (price).toFixed(2);
+    const fetchCartItems = async () => {
+      try {
+        const q = query(collection(db, "cart"), where("userEmail", "==", userEmail));
+        const querySnapshot = await getDocs(q);
+        const totalPrice = querySnapshot.docs.reduce((total, doc) => {
+          const itemPrice = parseFloat(doc.data().price);
+          return total + itemPrice;
+        }, 0);
+        setTotalPrice(totalPrice);
+      } catch (error) {
+        console.error("Error fetching cart items:", error);
+      }
+    };
+
+    if (userEmail) {
+      fetchCartItems();
+    }
+  }, [currency, userEmail]);
+
+  const amount = totalPrice.toFixed(2);
   const style = { layout: "vertical" };
 
   return (
     <>
-      {showSpinner && isPending && <div className="spinner" />}
-      <Box
-        p={4}
-        rounded="md"
-      >
+      <Box p={4} rounded="md">
         <PayPalButtons
           style={style}
           disabled={false}

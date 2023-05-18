@@ -15,7 +15,7 @@ export default function SignIn(props) {
     const password = event.target.password.value;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setSignInSuccess(`You've successfully signed in as ${userCredential.user.email}!`);
+        setSignInSuccess(`Signed in as ${userCredential.user.email}!`);
         props.onSignIn(userCredential.user.email);
       })
       .catch((error) => {
