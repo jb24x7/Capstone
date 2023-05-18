@@ -12,8 +12,6 @@ export default function Header({ onAddProduct, onCartClick, userCredentialInfo }
   const textColorModeValue = useColorModeValue('gray.600', 'white');
   const borderColorModeValue = useColorModeValue('gray.200', 'gray.900');
   const hoverColorModeValue = useColorModeValue('gray.800', 'white');
-  const hoverTextColorModeValue = useColorModeValue('gray.600', 'gray.200');
-  console.log(userCredentialInfo)
 
   const handleAddProductClick = () => {
     onAddProduct();

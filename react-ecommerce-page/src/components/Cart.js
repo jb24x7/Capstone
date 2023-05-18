@@ -12,7 +12,7 @@ function Cart(props) {
     try {
       await deleteDoc(doc(db, "cart", id));
     } catch (error) {
-      console.log("Error removing item from cart:", error);
+      alert("Error removing item from cart:", error);
     }
   };
 

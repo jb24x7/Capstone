@@ -13,7 +13,7 @@ function Product(props) {
       <Card maxW='sm' onClick={() => props.whenProductClicked(props.id)}>
         <CardBody>
           <Box h="200px" bgImage={`url(${props.imageUrl})`} bgSize="cover" bgPosition="center" />
-          <Stack mt='2' spacing='3' textAlign="left">
+          <Stack mt='2' spacing='3' textAlign="center"> {/* Updated textAlign to "center" */}
             <Text>
               {props.name.length > 25 ? `${props.name.substring(0, 25)}...` : props.name}
             </Text>

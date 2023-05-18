@@ -16,7 +16,6 @@ function App() {
 
   function handleSignInSuccess(userCredential) {
     setUserCredentialInfo(userCredential);
-    console.log(userCredentialInfo)
   }
 
   function handleAddProduct() {
@@ -30,7 +29,6 @@ function App() {
 
   const handleUserEmail = (email) => {
     setUserEmail(email);
-    console.log(email)
   };
 
 
