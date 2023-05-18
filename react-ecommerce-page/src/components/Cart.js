@@ -43,7 +43,6 @@ function Cart(props) {
       <SimpleGrid columns={3} spacing={10}>
         {filteredCart.map((product) => (
           <Card key={product.id}>
-            <Button onClick={() => handleRemoveId(product.id)}>X</Button>
             <Product
               whenProductClicked={props.onProductSelection}
               imageUrl={product.imageUrl}
@@ -53,6 +52,7 @@ function Cart(props) {
               id={product.id}
               key={product.id}
             />
+            <Button variant='solid' colorScheme='blue' onClick={() => handleRemoveId(product.id)}>Delete</Button>
           </Card>
 
         ))}
