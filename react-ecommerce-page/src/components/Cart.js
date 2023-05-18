@@ -16,7 +16,7 @@ function Cart(props) {
     props.onProductSelection(id);
   }
   const buyAllClick = (id) => {
-    props.buyNowClick();
+    props.buyAllClick();
     props.onProductSelection(id);
   }
 

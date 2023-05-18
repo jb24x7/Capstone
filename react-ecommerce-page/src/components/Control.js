@@ -104,6 +104,11 @@ function Control(props) {
     props.setCartVisible(false);
   };
 
+  const handleBuyAllClick = () => {
+    setCheckout(true);
+    props.setCartVisible(false);
+  };
+
   let CurrentlyVisibleState = null;
   let buttonText = null;
   if (editing) {
@@ -117,6 +122,7 @@ function Control(props) {
       userCart={userCart}
       removeFromCart={removeFromCart}
       buyNowClick={handleBuyNowClick}
+      buyAllClick={handleBuyAllClick}
       onProductSelection={handleChangingSelectedProduct}
       userCredentialInfo={props.userCredentialInfo} />;
     buttonText = "Return to list of products";
