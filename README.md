@@ -18,3 +18,4 @@
 * 12:05am Starting fresh as could not locate error
 * 10:00am Finishing rebuilding
 * 1:00pm Fixing minor issues
+* 5-11pm Final major alterations for better feel
