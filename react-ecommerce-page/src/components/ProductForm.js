@@ -7,7 +7,6 @@ function ProductForm(props) {
 
   const [imageUrl, setImageUrl] = useState(null);
 
-
   const { formSubmissionHandler, product } = props;
   const [name, setName] = useState(product?.name || "");
   const [description, setDescription] = useState(product?.description || "");
@@ -18,7 +17,6 @@ function ProductForm(props) {
 
   function handleProductFormSubmission(event) {
     event.preventDefault();
-
     if (imageUrl) {
       handleImageUpload(event, imageUpload, setImageDownloadURL, setIsUploading);
     } else {

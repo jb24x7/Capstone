@@ -19,9 +19,6 @@ function Control(props) {
   const [userCart, setUserCart] = useState([]);
   const [checkout, setCheckout] = useState(false);
 
-
-
-
   useEffect(() => {
     const unSubscribe = onSnapshot(
       collection(db, "products"),
@@ -46,8 +43,6 @@ function Control(props) {
     return () => unSubscribe();
   }, []);
 
-
-
   const handleClick = () => {
     if (selectedProduct != null) {
       props.setFormVisibleOnPage(false);
@@ -67,9 +62,7 @@ function Control(props) {
     if (props.cartVisible) {
       props.setCartVisible(false);
     }
-
     setSelectedProduct(selection);
-
   };
 
   const handleAddingNewProductToList = async (newProductData) => {
@@ -113,7 +106,7 @@ function Control(props) {
   let buttonText = null;
   if (editing) {
     CurrentlyVisibleState = <EditProduct
-      userCredentialInfo={props.userCredentialInfo}
+      userEmail={props.userEmail}
       onEditProduct={handleEditingProduct}
       productToEdit={selectedProduct} />;
     buttonText = "Products";
@@ -123,15 +116,13 @@ function Control(props) {
       userCart={userCart}
       removeFromCart={removeFromCart}
       buyAllClick={handleBuyAllClick}
-      onProductSelection={handleChangingSelectedProduct}
-      userCredentialInfo={props.userCredentialInfo} />;
+      onProductSelection={handleChangingSelectedProduct} />;
     buttonText = "Products";
   } else if (checkout) {
     CurrentlyVisibleState = <Chekcout
       userEmail={props.userEmail}
       userCart={userCart}
       onProductSelection={handleChangingSelectedProduct}
-      userCredentialInfo={props.userCredentialInfo}
       product={selectedProduct}
     />;
     buttonText = "Products";
@@ -147,13 +138,13 @@ function Control(props) {
     CurrentlyVisibleState = <NewProductForm
       setFormVisibleOnPage={props.setFormVisibleOnPage}
       onNewProductCreation={handleAddingNewProductToList}
-      userCredentialInfo={props.userCredentialInfo} />;
+      userEmail={props.userEmail} />;
     buttonText = "Products";
   } else {
     CurrentlyVisibleState = <ProductList
       onProductSelection={handleChangingSelectedProduct}
       productList={mainProductList}
-      userCredentialInfo={props.userCredentialInfo}
+      userEmail={props.userEmail}
     />;
 
   }
@@ -168,7 +159,6 @@ function Control(props) {
           </button>
         ) : null}
       </div>
-
     </React.Fragment>
   );
 };

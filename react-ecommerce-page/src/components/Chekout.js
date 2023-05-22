@@ -26,7 +26,6 @@ const Checkout = (props) => {
         console.error("Error fetching cart items:", error);
       }
     };
-
     if (userEmail) {
       fetchCartItems();
     }
@@ -46,8 +45,7 @@ const Checkout = (props) => {
               spacing={6}
               align="flex-start"
               bg={bgColor}
-              key={item.id}
-            >
+              key={item.id}>
               <HStack spacing={6} alignItems="center" w="full">
                 <AspectRatio ratio={1} w={24}>
                   <Image src={item.imageUrl} />
@@ -57,8 +55,7 @@ const Checkout = (props) => {
                   w="full"
                   direction="row"
                   justifyContent="space-between"
-                  alignItems="center"
-                >
+                  alignItems="center">
                   <VStack w="full" spacing={0} alignItems="flex-start">
                     <Heading size="md">{item.name}</Heading>
                   </VStack>
@@ -79,8 +76,7 @@ const Checkout = (props) => {
               "client-id": process.env.REACT_APP_CLIENT_ID,
               components: "buttons",
               currency: "USD",
-            }}
-          >
+            }}>
             <PayPal currency={currency} userEmail={props.userEmail} />
           </PayPalScriptProvider>
         </VStack>

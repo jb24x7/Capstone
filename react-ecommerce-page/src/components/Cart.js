@@ -50,11 +50,9 @@ function Cart(props) {
               price={product.price}
               user={product.user}
               id={product.id}
-              key={product.id}
-            />
+              key={product.id} />
             <Button variant='solid' colorScheme='blue' onClick={() => handleRemoveId(product.id)}>Delete</Button>
           </Card>
-
         ))}
       </SimpleGrid>
       <Button variant='solid' colorScheme='blue' onClick={() => buyAllClick()}>

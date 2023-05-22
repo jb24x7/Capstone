@@ -10,12 +10,11 @@ import { auth } from '../firebase';
 function App() {
 
   const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
-  const [userCredentialInfo, setUserCredentialInfo] = useState(null);
   const [cartVisible, setCartVisible] = useState(false);
   const [userEmail, setUserEmail] = useState(null);
 
-  function handleSignInSuccess(userCredential) {
-    setUserCredentialInfo(userCredential);
+  function handleSignInSuccess(email) {
+    setUserEmail(email);
   }
 
   function handleAddProduct() {
@@ -26,10 +25,6 @@ function App() {
     setCartVisible(true);
   }
 
-
-  const handleUserEmail = (email) => {
-    setUserEmail(email);
-  };
 
 
   const handleSignOut = () => {
@@ -52,12 +47,12 @@ function App() {
             onSignOut={handleSignOut}
             onAddProduct={handleAddProduct}
             onCartClick={handleCartClick}
-            userCredentialInfo={userEmail}
+            userEmail={userEmail}
           />
           <Grid minH="100vh" minW="100vh" columns={{ sm: 1, md: 2, lg: 3 }} spacing={10}>
             <VStack spacing={8}>
               <Routes>
-                <Route path="/sign-in" element={<SignIn onSignInSuccess={handleSignInSuccess} onSignIn={handleUserEmail} />} />
+                <Route path="/sign-in" element={<SignIn onSignInSuccess={handleSignInSuccess} />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="*" element={<Control
                   userEmail={userEmail}
@@ -65,7 +60,6 @@ function App() {
                   setFormVisibleOnPage={setFormVisibleOnPage}
                   setCartVisible={setCartVisible}
                   cartVisible={cartVisible}
-                  userCredentialInfo={userCredentialInfo}
                 />} />
               </Routes>
             </VStack>

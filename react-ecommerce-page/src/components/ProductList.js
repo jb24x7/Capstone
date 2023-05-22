@@ -5,7 +5,7 @@ import { SimpleGrid } from '@chakra-ui/react';
 
 function ProductList(props) {
 
-  const user = props.userCredentialInfo
+  const user = props.userEmail
   const userEmail = user ? user.email : null;
 
   return (
