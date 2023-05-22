@@ -75,7 +75,8 @@ function Control(props) {
   };
 
   const handleAddToCart = async () => {
-    const cartInfo = {
+    if (!props.userEmail) {
+          const cartInfo = {
       name: selectedProduct.name,
       price: selectedProduct.price,
       imageUrl: selectedProduct.imageUrl,
@@ -84,6 +85,9 @@ function Control(props) {
     await addDoc(collection(db, "cart"), cartInfo);
     setEditing(false);
     setSelectedProduct(null);
+    } else {
+      alert("Please sign in then try again")
+    }
   };
 
   const removeFromCart = (id) => {
