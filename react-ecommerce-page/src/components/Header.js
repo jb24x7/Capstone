@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Box,
   Flex,
@@ -212,8 +211,6 @@ const MobileNav = () => {
 const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
   const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const hoverColor = useColorModeValue('gray.800', 'white');
-
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <Box>
