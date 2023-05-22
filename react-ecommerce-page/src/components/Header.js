@@ -20,7 +20,7 @@ import { ColorModeSwitcher } from '../ColorModeSwitcher';
 export default function Header({
   onAddProduct,
   onCartClick,
-  userEmail,
+  userCredentialInfo,
   onSignOut,
 }) {
   const { isOpen, onToggle } = useDisclosure();
@@ -109,7 +109,7 @@ export default function Header({
           direction={'row'}
           spacing={6}
         >
-          {userEmail ? (
+          {userCredentialInfo ? (
             <Button
               variant={'ghost'}
               onClick={handleCartClick}
@@ -129,7 +129,7 @@ export default function Header({
               />
             </Button>
           ) : null}
-          {userEmail === 'jb24x7@gmail.com' ? (
+          {userCredentialInfo === 'jb24x7@gmail.com' ? (
             <Button
               variant={'ghost'}
               onClick={handleAddProductClick}
@@ -142,7 +142,7 @@ export default function Header({
               Add Product
             </Button>
           ) : null}
-          {!userEmail ? (
+          {!userCredentialInfo ? (
             <Button
               as={'a'}
               fontSize={'sm'}
@@ -156,7 +156,7 @@ export default function Header({
               Sign In
             </Button>
           ) : null}
-          {!userEmail ? (
+          {!userCredentialInfo ? (
             <Button
               as={'a'}
               display={{ base: 'none', md: 'inline-flex' }}
@@ -173,7 +173,7 @@ export default function Header({
               Sign Up
             </Button>
           ) : null}
-          {userEmail ? (
+          {userCredentialInfo ? (
             <Button
               as={'a'}
               fontSize={'sm'}

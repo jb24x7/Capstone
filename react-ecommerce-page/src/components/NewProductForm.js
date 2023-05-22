@@ -10,7 +10,7 @@ function NewProductForm(props) {
 
   const [isUploading, setIsUploading] = useState(false);
 
-  const user = props.userEmail;
+  const user = props.userCredentialInfo;
   const userEmail = user ? user.email : null;
 
   const handleSubmit = (imageDownloadURL) => {
@@ -43,7 +43,7 @@ function NewProductForm(props) {
   return (
     <React.Fragment>
       <ProductForm
-        userEmail={props.userEmail}
+        userCredentialInfo={props.userCredentialInfo}
         formSubmissionHandler={handleSubmit}
         buttonText="Submit" />
     </React.Fragment>

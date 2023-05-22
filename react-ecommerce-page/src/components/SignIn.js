@@ -5,6 +5,7 @@ import { auth } from '../firebase';
 
 export default function SignIn(props) {
 
+  const { onSignIn } = props;
   const [signInSuccess, setSignInSuccess] = useState(null);
 
   function doSignIn(event) {
@@ -14,6 +15,7 @@ export default function SignIn(props) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setSignInSuccess(`Signed in as ${userCredential.user.email}!`);
+        props.onSignIn(userCredential.user.email);
       })
       .catch((error) => {
         setSignInSuccess(`There was an error signing in: ${error.message}!`);

@@ -110,7 +110,7 @@ function Control(props) {
   let buttonText = null;
   if (editing) {
     CurrentlyVisibleState = <EditProduct
-      userEmail={props.userEmail}
+      userCredentialInfo={props.userCredentialInfo}
       onEditProduct={handleEditingProduct}
       productToEdit={selectedProduct} />;
     buttonText = "Products";
@@ -120,7 +120,8 @@ function Control(props) {
       userCart={userCart}
       removeFromCart={removeFromCart}
       buyAllClick={handleBuyAllClick}
-      onProductSelection={handleChangingSelectedProduct} />;
+      onProductSelection={handleChangingSelectedProduct} 
+      userCredentialInfo={props.userCredentialInfo}/>;
     buttonText = "Products";
   } else if (checkout) {
     CurrentlyVisibleState = <Chekcout
@@ -128,6 +129,7 @@ function Control(props) {
       userCart={userCart}
       onProductSelection={handleChangingSelectedProduct}
       product={selectedProduct}
+      userCredentialInfo={props.userCredentialInfo}
     />;
     buttonText = "Products";
   } else if (selectedProduct != null) {
@@ -140,6 +142,7 @@ function Control(props) {
     buttonText = "Products";
   } else if (props.formVisibleOnPage) {
     CurrentlyVisibleState = <NewProductForm
+      userCredentialInfo={props.userCredentialInfo}
       setFormVisibleOnPage={props.setFormVisibleOnPage}
       onNewProductCreation={handleAddingNewProductToList}
       userEmail={props.userEmail} />;
