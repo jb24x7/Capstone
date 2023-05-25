@@ -67,6 +67,7 @@ function Control(props) {
 
   const handleAddingNewProductToList = async (newProductData) => {
     await addDoc(collection(db, "products"), newProductData);
+    console.log("trying to find issue")
     props.setFormVisibleOnPage(false);
   };
 
